@@ -19,7 +19,10 @@ cur.execute('''CREATE TABLE IF NOT EXISTS DATA
     PinCode TEXT,
     ClassX_Board TEXT,
     ClassX_year of passing TEXT, 
-    ClassX_Percentage TEXT
+    ClassX_Percentage TEXT,
+    ClassXII_Board TEXT,
+    ClassXII_year of passing TEXT, 
+    ClassXII_Percentage TEXT
 )''')
 cur.close()
 cnect_db.commit()
@@ -44,20 +47,22 @@ def fetchdets():
     print("Class X_Board:", brdl1.get())
     print("Class X_Percentage:", perc1.get())
     print("Class X_year of passing:", yrpass1.get())
+    print("Class XII_Board:", brdl2.get())
+    print("Class XII_Percentage:", perc2.get())
+    print("Class XII_year of passing:", yrpass2.get())
 
     cnect_db = sq.connect('database.db')
     cur = cnect_db.cursor()
-    cur.execute("Insert into DATA values('%s','%s','%s','%s','%s','%s','%s','%s','%s','%s','%s')"
+    cur.execute("Insert into DATA values('%s','%s','%s','%s','%s','%s','%s','%s','%s','%s','%s','%s','%s','%s')"
                 % (first_ent.get(), last_ent.get(), email_ent.get(),
                    num_ent.get(), country_ent.get(), city_ent.get(),
                    state_ent.get(), pincode_ent.get(), brdl1.get(),
-                   perc1.get(), yrpass1.get()))
+                   perc1.get(), yrpass1.get(), brdl2.get(), perc2.get(), yrpass2.get()))
     cur.close()
     cnect_db.commit()
     cur.close()
-#    Address TEXT,
-# , text.get()
-    # print("Address:", text.get())
+
+
 ########## Main Events ########
 PURPLE = '#695bca'
 window = Tk()
@@ -81,7 +86,7 @@ frame6.grid(column=2, row=26, sticky='W')
 frame7 = Frame(window, bg=PURPLE)
 frame7.grid(column=1, row=24, sticky='W')
 
-####################FUNCTIONS and Variables###########################
+####################FUNCTIONS###########################
 v1 = IntVar()
 v2 = IntVar()
 v3 = IntVar()
@@ -142,19 +147,19 @@ mobile_num = Label(window, text='MOBILE NUMBER', fg='white', bg=PURPLE, font=("U
 mobile_num.grid(column=0, row=5, padx=(10, 30), pady=5, sticky='W')
 num_ent = Entry(window)
 num_ent.grid(column=1, row=5, sticky='W')
-num_2 = Label(window, text='(10 digit number)', fg='white', bg=PURPLE, font=("Ubuntu Mono", 13))
+num_2 = Label(window, text='(10 digit number)', fg='white', bg=PURPLE, font=("Ubuntu Mono", 12))
 num_2.grid(column=2, row=5, sticky='W')
 
-gender = Label(window, text='GENDER', fg='white', bg=PURPLE, font=("Ubuntu Mono", 13))
+gender = Label(window, text='GENDER', fg='white', bg=PURPLE, font=("Ubuntu Mono", 12))
 gender.grid(column=0, row=6, padx=(10, 30), pady=5, sticky='W')
 
-R1 = Radiobutton(frame1, variable=v5, value=1, bg=PURPLE, activebackground=PURPLE, cursor='dot', highlightthickness=0)
+R1 = Radiobutton(frame1, variable=v5, value=1, bg=PURPLE, activebackground=PURPLE, cursor='dot')
 R1.pack(side=LEFT)
 
 btn1 = Label(frame1, text='MALE', fg='white', bg=PURPLE, font=("Ubuntu Mono", 13))
 btn1.pack(side=LEFT)
 
-R2 = Radiobutton(frame1, variable=v5, value=2, bg=PURPLE, activebackground=PURPLE, cursor='dot', highlightthickness=0)
+R2 = Radiobutton(frame1, variable=v5, value=2, bg=PURPLE, activebackground=PURPLE, cursor='dot')
 R2.pack(side=LEFT)
 
 btn2 = Label(frame1, text='FEMALE', fg='white', bg=PURPLE, font=("Ubuntu Mono", 13))
@@ -167,7 +172,7 @@ text = Text(window, height=4, width=26)
 text.grid(column=1, row=7, pady=10, sticky='W')
 
 city = Label(window, text='CITY', fg='white', bg=PURPLE, font=("Ubuntu Mono", 12))
-city.grid(column=0, row=8, padx=(10, 30), pady=5, sticky='W')
+city.grid(column=0, row=7, padx=(10, 30), pady=5, sticky='W')
 city_ent = Entry(window)
 city_ent.grid(column=1, row=8, sticky='W')
 city_2 = Label(window, text=' (max 30 characters a-z and A-z)', fg='white', bg=PURPLE, font=("Ubuntu Mono", 12))
@@ -196,34 +201,34 @@ country_ent.grid(column=1, row=12, sticky='W')
 hobbies = Label(window, text='Hobbies', fg='white', bg=PURPLE, font=("Ubuntu Mono", 12))
 hobbies.grid(column=0, row=13, padx=(10, 30), pady=5, sticky='W')
 
-H1 = Checkbutton(frame2, variable=v1, bg=PURPLE, activebackground=PURPLE, cursor='dot', highlightthickness=0)
+H1 = Checkbutton(frame2, variable=v1, bg=PURPLE, activebackground=PURPLE, cursor='dot')
 H1.pack(side=LEFT)
 
-btnh1 = Label(frame2, text='Drawing', fg='white', bg=PURPLE, font=("Ubuntu Mono", 13), highlightthickness=0)
+btnh1 = Label(frame2, text='Drawing', fg='white', bg=PURPLE, font=("Ubuntu Mono", 13))
 btnh1.pack(side=LEFT)
 
-H2 = Checkbutton(frame2, variable=v2, bg=PURPLE, activebackground=PURPLE, cursor='dot', highlightthickness=0)
+H2 = Checkbutton(frame2, variable=v2, bg=PURPLE, activebackground=PURPLE, cursor='dot')
 H2.pack(side=LEFT)
 
-btnh2 = Label(frame2, text='Singing', fg='white', bg=PURPLE, font=("Ubuntu Mono", 13), highlightthickness=0)
+btnh2 = Label(frame2, text='Singing', fg='white', bg=PURPLE, font=("Ubuntu Mono", 13))
 btnh2.pack(side=LEFT)
 
-H3 = Checkbutton(frame3, variable=v3, bg=PURPLE, activebackground=PURPLE, cursor='dot', highlightthickness=0)
+H3 = Checkbutton(frame3, variable=v3, bg=PURPLE, activebackground=PURPLE, cursor='dot')
 H3.pack(side=LEFT)
 
-btnh3 = Label(frame3, text='Dancing', fg='white', bg=PURPLE, font=("Ubuntu Mono", 13), highlightthickness=0)
+btnh3 = Label(frame3, text='Dancing', fg='white', bg=PURPLE, font=("Ubuntu Mono", 13))
 btnh3.pack(side=LEFT)
 
-H4 = Checkbutton(frame3, variable=v4, bg=PURPLE, activebackground=PURPLE, cursor='dot', highlightthickness=0)
+H4 = Checkbutton(frame3, variable=v4, bg=PURPLE, activebackground=PURPLE, cursor='dot')
 H4.pack(side=LEFT)
 
-btnh4 = Label(frame3, text='Sketching', fg='white', bg=PURPLE, font=("Ubuntu Mono", 13), highlightthickness=0)
+btnh4 = Label(frame3, text='Sketching', fg='white', bg=PURPLE, font=("Ubuntu Mono", 13))
 btnh4.pack(side=LEFT)
 
-btnh5 = Label(frame4, text='Others', fg='white', bg=PURPLE, font=("Ubuntu Mono", 13), highlightthickness=0)
+btnh5 = Label(frame4, text='Others', fg='white', bg=PURPLE, font=("Ubuntu Mono", 13))
 btnh5.pack(side=LEFT)
 
-H5 = Checkbutton(frame4, variable=v6, bg=PURPLE, activebackground=PURPLE, cursor='dot', highlightthickness=0)
+H5 = Checkbutton(frame4, variable=v6, bg=PURPLE, activebackground=PURPLE, cursor='dot')
 H5.pack(side=LEFT)
 
 btnhe = Entry(frame4, font=("Ubuntu Mono", 13), width=13)
